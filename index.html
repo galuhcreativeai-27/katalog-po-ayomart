@@ -28,9 +28,6 @@ a{color:inherit}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid color-mix(in srgb,var(--red) 60%,transparent);outline-offset:2px}
 
-.bar{background:var(--ink);color:var(--bg);font-size:14px}
-.bar .wrap{display:flex;flex-wrap:wrap;gap:4px 22px;padding-block:9px;justify-content:center}
-.bar b{color:var(--yel)}
 header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
 .logo{display:block;width:150px;height:27px;background:var(--ink);-webkit-mask:url(assets/logo-ayomart.png) left center/contain no-repeat;mask:url(assets/logo-ayomart.png) left center/contain no-repeat;flex:none}
@@ -131,7 +128,6 @@ dl.kv dt{color:var(--mut)}dl.kv dd{margin:0;font-weight:600}
 .acts .btn{flex:1 1 180px}
 @media(max-width:760px){.sheet{grid-template-columns:minmax(0,1fr)}.sheet .pic{min-height:0;aspect-ratio:4/3}}
 @media(max-width:600px){
-  .bar span+span{display:none}
   .tools{position:static}
   .chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px}.chip{flex:none}
   .search{max-width:none;margin-left:0}
@@ -146,7 +142,6 @@ dl.kv dt{color:var(--mut)}dl.kv dd{margin:0;font-weight:600}
 </style>
 </head>
 <body>
-<div class="bar"><div class="wrap"><span>Cek stok dulu, <b>baru DP</b></span><span>DP dalam <b>1×24 jam</b> setelah dikonfirmasi</span><span>Barang langsung dari <b>Taobao dan Tmall</b></span></div></div>
 <header class="top"><div class="wrap">
   <a class="logo" href="#katalog" aria-label="Ayomart"><span>Ayomart</span></a>
   <nav class="links"><a href="#katalog">Katalog</a><a href="#cara-order">Cara ikut PO</a><a href="#aturan">Aturan</a><a href="#faq">FAQ</a></nav>
