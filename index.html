@@ -132,6 +132,13 @@
   .isi-detail h3{margin:6px 0 6px;font-size:20px;line-height:1.3}
   .baris-harga{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
   .baris-harga .harga{font-size:28px}
+  .kloter{margin:14px 0 0;background:#fff;border:1.5px solid var(--biru-muda);border-radius:var(--r-sedang);padding:14px 16px;display:flex;gap:14px;align-items:center}
+  .kloter.jeda{border-color:var(--garis)}
+  .kloter .ang{font-family:var(--angka);color:var(--biru);font-size:30px;line-height:1;text-align:center;min-width:64px}
+  .kloter .ang small{display:block;font-family:var(--font);font-size:11px;color:var(--isi);margin-top:2px}
+  .kloter b{display:block;font-family:var(--font-judul);font-size:16px}
+  .kloter span{font-size:13px;color:var(--isi)}
+  .eta{font-size:11px;color:var(--isi);margin-top:2px}
   .kotak-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
   .kotak-info div{background:#fff;border:1px solid var(--garis);border-radius:var(--r-kecil);padding:10px}
   .kotak-info small{display:block;color:var(--sekunder);font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
@@ -196,9 +203,11 @@
     </div>
   </section>
 
+  <div class="kloter" id="kloterInfo" hidden></div>
+
   <section id="katalog" aria-labelledby="judulKatalog">
     <div class="judul-bagian">
-      <h2 id="judulKatalog">PO yang sedang dibuka</h2>
+      <h2 id="judulKatalog">Barang PO</h2>
       <small id="diperbarui"></small>
     </div>
     <div class="alat">
@@ -229,7 +238,7 @@
         <li>DP tidak dapat dikembalikan jika pesanan dibatalkan oleh customer.</li>
         <li>Pelunasan paling lambat 7 hari setelah barang tiba. Lewat dari itu, DP hangus dan barang dapat dijual ke orang lain.</li>
         <li>Jika supplier membatalkan atau barang gagal didapat, DP dikembalikan penuh.</li>
-        <li>Estimasi tiba bisa mundur karena jadwal rilis atau pengiriman. Admin akan selalu mengabari.</li>
+        <li>Pesanan ikut kloter pengiriman terdekat sesuai tanggal pesan. Estimasi tiba bisa mundur karena jadwal rilis atau pengiriman. Admin akan selalu mengabari.</li>
         <li>Ongkir dalam negeri (gudang ke alamatmu) ditanggung customer dan diinfokan admin lewat WA saat pelunasan.</li>
       </ul>
     </div>
@@ -240,7 +249,7 @@
     <details><summary>Harga di katalog sudah termasuk apa saja?</summary><p>Harga sudah termasuk harga barang, pengiriman sampai gudang kami, dan biaya jasa. Yang belum termasuk hanya ongkir dari gudang kami ke alamatmu.</p></details>
     <details><summary>Kapan saya transfer DP?</summary><p>Setelah kamu isi form, admin cek dulu ketersediaan barangnya. Kalau tersedia, admin kirim nominal DP dan link konfirmasi lewat WhatsApp. Baru setelah itu kamu transfer, maksimal 1×24 jam.</p></details>
     <details><summary>Bagaimana kalau stoknya ternyata habis?</summary><p>Admin akan mengabari lewat WhatsApp. Karena kamu belum transfer apa pun, tidak ada uang yang perlu dikembalikan.</p></details>
-    <details><summary>Berapa lama sampai barang tiba?</summary><p>Lihat estimasi tiba di setiap barang. Untuk barang pre-order resmi, tanggalnya mengikuti jadwal rilis dari pembuatnya dan bisa mundur. Admin akan mengabari setiap ada perubahan.</p></details>
+    <details><summary>Berapa lama sampai barang tiba?</summary><p>Barang dikirim per kloter, enam kali setahun: akhir Januari, Maret, Mei, Juli, September, dan November. Pesanan sampai tanggal 20 ikut kloter bulan itu dan tiba sekitar 2–3 bulan kemudian. Barang pre-order resmi ikut kloter setelah tanggal rilisnya. Estimasi untuk tiap barang tertulis di halamannya.</p></details>
     <details><summary>Kenapa form konfirmasi pembayaran minta login Google?</summary><p>Karena ada tempat upload bukti transfer, dan Google mewajibkan login untuk upload. Kalau tidak punya akun Google, kirim bukti transfer langsung ke WhatsApp admin.</p></details>
     <details><summary>Slot di katalog real-time?</summary><p>Tidak. Angka slot diperbarui berkala oleh admin. Kalau slot hampir penuh, sebaiknya segera isi form atau tanya admin dulu.</p></details>
   </section>
@@ -269,27 +278,61 @@
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
   function waLink(teks){return "https://wa.me/"+DATA.toko.wa+"?text="+encodeURIComponent(teks)}
   function tglIndo(iso){var b=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];var p=iso.split("-");return +p[2]+" "+b[+p[1]-1]+" "+p[0]}
-  function sisaHari(b){
-    if(!b.tutup) return null;
-    var akhir=new Date(b.tutup+"T23:59:59+07:00").getTime();
-    return Math.ceil((akhir-Date.now())/86400000);
+  var BULAN=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+  function hariIni(){return new Date(Date.now()+7*3600e3).toISOString().slice(0,10)}
+  function hariKe(iso){return Math.round((Date.parse(iso)-Date.parse(hariIni()))/86400000)}
+  function kloterAktif(){
+    var t=hariIni(),K=DATA.kloter||[],i;
+    for(i=0;i<K.length;i++) if(K[i].buka<=t&&t<=K[i].tutup) return {k:K[i],i:i,buka:true};
+    for(i=0;i<K.length;i++) if(K[i].buka>t) return {k:K[i],i:i,buka:false};
+    return null;
+  }
+  function kloterBarang(b){
+    var a=kloterAktif(),K=DATA.kloter||[]; if(!a) return null;
+    for(var i=a.i;i<K.length;i++) if(!b.siapKirim||b.siapKirim<=K[i].tutup) return K[i];
+    return null;
+  }
+  function rentangTiba(k){
+    if(!k) return "-";
+    var a=k.tibaAwal.split("-"),z=k.tibaAkhir.split("-"),ba=BULAN[+a[1]-1],bz=BULAN[+z[1]-1];
+    if(a[0]===z[0]) return ba===bz?ba+" "+a[0]:ba+"–"+bz+" "+a[0];
+    return ba+" "+a[0]+"–"+bz+" "+z[0];
+  }
+  function batasPesan(b){
+    var a=kloterAktif(); if(!a||!a.buka) return null;
+    return b.tutup&&b.tutup<a.k.tutup?b.tutup:a.k.tutup;
   }
   function keadaan(b){
     if(b.status==="PO ditutup") return {bisa:false,teks:"PO ditutup",kelas:"abu"};
     if(b.status==="Barang tiba") return {bisa:false,teks:"Sudah tiba",kelas:""};
-    var h=sisaHari(b);
-    if(h!==null && h<0) return {bisa:false,teks:"PO ditutup",kelas:"abu"};
+    var a=kloterAktif();
+    if(!a) return {bisa:false,teks:"PO belum dibuka",kelas:"abu"};
+    if(!a.buka) return {bisa:false,teks:"Dibuka "+tglIndo(a.k.buka).replace(/ \d{4}$/,""),kelas:"abu"};
+    if(b.tutup&&hariKe(b.tutup)<0) return {bisa:false,teks:"PO ditutup",kelas:"abu"};
+    if(!kloterBarang(b)) return {bisa:false,teks:"Segera dibuka",kelas:"abu"};
     if(b.kuota && b.terisi>=b.kuota) return {bisa:false,teks:"Slot penuh",kelas:"abu"};
-    if(h!==null && h<=3) return {bisa:true,teks:h<=0?"Tutup hari ini":"Tutup "+h+" hari lagi",kelas:"oranye"};
+    var h=hariKe(batasPesan(b));
+    if(h<=3) return {bisa:true,teks:h<=0?"Tutup hari ini":"Tutup "+h+" hari lagi",kelas:"oranye"};
     if(b.kuota && b.kuota-b.terisi<=2) return {bisa:true,teks:"Sisa "+(b.kuota-b.terisi)+" slot",kelas:"oranye"};
     return {bisa:true,teks:"PO dibuka",kelas:""};
   }
+  function sisaHari(b){var bp=batasPesan(b);return bp?hariKe(bp):null}
   function teksSisa(b){
+    var a=kloterAktif();
+    if(a&&!a.buka) return "Dibuka "+tglIndo(a.k.buka).replace(/ \d{4}$/,"");
     var h=sisaHari(b);
     if(h===null) return "";
     if(h<0) return "Sudah tutup";
     if(h===0) return "Tutup hari ini";
     return "Tutup "+h+" hari lagi";
+  }
+  function bannerKloter(){
+    var a=kloterAktif(),el=$("kloterInfo"); if(!a){el.hidden=true;return}
+    var k=a.k,h=a.buka?hariKe(k.tutup):hariKe(k.buka);
+    el.hidden=false; el.className="kloter"+(a.buka?"":" jeda");
+    el.innerHTML='<div class="ang">'+Math.max(0,h)+'<small>hari lagi</small></div><div>'+
+      (a.buka?'<b>PO '+esc(k.nama)+' sedang dibuka</b><span>Pesan sebelum '+esc(tglIndo(k.tutup))+' · estimasi tiba '+esc(rentangTiba(k))+'</span>'
+             :'<b>PO berikutnya dibuka '+esc(tglIndo(k.buka))+'</b><span>'+esc(k.nama)+' · pesan sampai '+esc(tglIndo(k.tutup))+' · estimasi tiba '+esc(rentangTiba(k))+'. Barang sudah bisa dilihat, tombol pesan aktif mulai tanggal itu.</span>')+'</div>';
   }
   function daftarVarian(b){
     return (b.varian||[]).map(function(v){return typeof v==="string"?{nama:v}:v}).filter(function(v){return !v.habis})
@@ -322,6 +365,7 @@
       '<div class="badan"><span class="kode">'+esc(b.kode)+'</span><span class="nama">'+esc(b.nama)+'</span>'+
       (function(){var r=rentang(b);return r.beda?'<span class="harga"><small>mulai </small>'+esc(rp(r.min))+'</span><span class="dp">DP mulai '+esc(rp(r.dpMin))+'</span>':'<span class="harga">'+esc(rp(b.harga))+'</span><span class="dp">DP '+esc(rp(b.dp))+'</span>'})()+
       (daftarVarian(b).length>1?'<span class="jml-varian">'+daftarVarian(b).length+' varian</span>':'')+
+      (b.status==="Barang tiba"?'':'<span class="eta">Tiba ± '+esc(rentangTiba(kloterBarang(b)))+'</span>')+
       (b.status==="Barang tiba"?'':'<div class="meta"><span class="'+(h!==null&&h<=3&&h>=0?'mendesak':'')+'">'+esc(sisa)+'</span><span>'+esc(kanan)+'</span></div>'+slot)+
       '</div></button>';
   }
@@ -364,10 +408,10 @@
         (rg.beda?'<div class="baris-harga"><span class="harga">'+esc(rp(rg.min))+' – '+esc(rp(rg.max))+'</span><span class="dp">harga tergantung varian · DP 50% · sisa dibayar saat barang tiba</span></div>'
           :'<div class="baris-harga"><span class="harga">'+esc(rp(b.harga))+'</span><span class="dp">per pcs · DP '+esc(rp(b.dp))+' · sisa dibayar saat barang tiba</span></div>')+
         '<div class="kotak-info">'+
-          '<div><small>Tutup PO</small><b>'+(b.tutup?esc(tglIndo(b.tutup)):"-")+'</b></div>'+
-          '<div><small>Estimasi tiba</small><b>'+esc(b.estimasi||"-")+'</b></div>'+
+          '<div><small>Pesan sebelum</small><b>'+(batasPesan(b)?esc(tglIndo(batasPesan(b))):esc(teksSisa(b)||"-"))+'</b></div>'+
+          '<div><small>Estimasi tiba</small><b>'+esc(rentangTiba(kloterBarang(b)))+'</b></div>'+
           '<div><small>Slot</small><b>'+(b.kuota?esc(b.terisi+" dari "+b.kuota+" terisi"):"Tidak dibatasi")+'</b></div>'+
-          '<div><small>Status</small><b>'+esc(k.teks)+'</b></div>'+
+          '<div><small>Ikut kloter</small><b>'+esc((kloterBarang(b)||{}).nama||"-")+'</b></div>'+
         '</div>'+
         (varian.length?
           '<div class="label">Pilih varian <span style="font-weight:400;color:var(--sekunder)">(boleh lebih dari satu)</span></div>'+
@@ -444,7 +488,7 @@
       var t=new Date(DATA.diperbarui);
       $("diperbarui").textContent="Diperbarui "+t.toLocaleDateString("id-ID",{day:"numeric",month:"short",timeZone:"Asia/Jakarta"});
     }
-    chips(); render();
+    bannerKloter(); chips(); render();
     $("chips").addEventListener("click",function(e){var t=e.target.closest(".chip");if(!t)return;kategoriAktif=t.dataset.k;chips();render()});
     $("cari").addEventListener("input",function(e){kataCari=e.target.value;render()});
     document.addEventListener("click",function(e){var c=e.target.closest(".kartu");if(c)bukaDetail(c.dataset.kode)});

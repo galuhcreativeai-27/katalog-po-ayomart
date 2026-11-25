@@ -94,8 +94,6 @@
       ],
       "kuota": 8,
       "terisi": 0,
-      "tutup": "2026-12-10",
-      "estimasi": "Januari 2027",
       "foto": [
         "assets/foto/fig-002-1.webp",
         "assets/foto/fig-002-2.webp",
@@ -137,8 +135,6 @@
       ],
       "kuota": 20,
       "terisi": 0,
-      "tutup": "2026-12-20",
-      "estimasi": "Juni 2027",
       "foto": [
         "assets/foto/mer-002-1.webp",
         "assets/foto/mer-002-2.webp",
@@ -146,7 +142,8 @@
         "assets/foto/mer-002-4.webp",
         "assets/foto/mer-002-5.webp"
       ],
-      "catatan": "Barang pre-order resmi. Estimasi tiba mengikuti jadwal rilis dan bisa mundur."
+      "catatan": "Barang pre-order resmi, baru rilis sekitar Juni 2027, jadi ikut kloter setelah tanggal rilis.",
+      "siapKirim": "2027-06-10"
     },
     {
       "kode": "MER-001",
@@ -168,8 +165,6 @@
       ],
       "kuota": 10,
       "terisi": 3,
-      "tutup": "2026-12-15",
-      "estimasi": "Maret 2027",
       "foto": [
         "assets/foto/mer-001-1.webp",
         "assets/foto/mer-001-2.webp",
@@ -178,6 +173,56 @@
         "assets/foto/mer-001-5.webp"
       ],
       "catatan": "Beberapa karakter masih menunggu jadwal rilis, jadi waktu tiba bisa berbeda per karakter."
+    }
+  ],
+  "kloter": [
+    {
+      "nama": "Kloter 1 2027",
+      "buka": "2026-12-14",
+      "tutup": "2027-01-20",
+      "kirim": "2027-01-30",
+      "tibaAwal": "2027-03-30",
+      "tibaAkhir": "2027-04-30"
+    },
+    {
+      "nama": "Kloter 2 2027",
+      "buka": "2027-02-14",
+      "tutup": "2027-03-20",
+      "kirim": "2027-03-30",
+      "tibaAwal": "2027-05-30",
+      "tibaAkhir": "2027-06-30"
+    },
+    {
+      "nama": "Kloter 3 2027",
+      "buka": "2027-04-14",
+      "tutup": "2027-05-20",
+      "kirim": "2027-05-30",
+      "tibaAwal": "2027-07-30",
+      "tibaAkhir": "2027-08-30"
+    },
+    {
+      "nama": "Kloter 4 2027",
+      "buka": "2027-06-14",
+      "tutup": "2027-07-20",
+      "kirim": "2027-07-30",
+      "tibaAwal": "2027-09-30",
+      "tibaAkhir": "2027-10-30"
+    },
+    {
+      "nama": "Kloter 5 2027",
+      "buka": "2027-08-14",
+      "tutup": "2027-09-20",
+      "kirim": "2027-09-30",
+      "tibaAwal": "2027-11-30",
+      "tibaAkhir": "2027-12-30"
+    },
+    {
+      "nama": "Kloter 6 2027",
+      "buka": "2027-10-14",
+      "tutup": "2027-11-20",
+      "kirim": "2027-11-30",
+      "tibaAwal": "2028-01-30",
+      "tibaAkhir": "2028-02-29"
     }
   ]
 }
