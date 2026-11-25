@@ -30,7 +30,8 @@
         {
           "nama": "Kokomi",
           "harga": 225000,
-          "dp": 113000
+          "dp": 113000,
+          "foto": "assets/foto/fig-002-v-kokomi.webp"
         },
         {
           "nama": "Kaedehara Kazuha",
@@ -39,7 +40,8 @@
         {
           "nama": "Freminet",
           "harga": 200000,
-          "dp": 100000
+          "dp": 100000,
+          "foto": "assets/foto/fig-002-v-freminet.webp"
         },
         {
           "nama": "Mualani",
@@ -48,7 +50,8 @@
         {
           "nama": "Bennett",
           "harga": 200000,
-          "dp": 100000
+          "dp": 100000,
+          "foto": "assets/foto/fig-002-v-bennett.webp"
         },
         {
           "nama": "SECRET Furina Waltz",
@@ -61,34 +64,44 @@
         {
           "nama": "Citlali",
           "harga": 265000,
-          "dp": 133000
+          "dp": 133000,
+          "foto": "assets/foto/fig-002-v-citlali.webp"
         },
         {
           "nama": "Kinich",
           "harga": 300000,
-          "dp": 150000
+          "dp": 150000,
+          "foto": "assets/foto/fig-002-v-kinich.webp"
         },
         {
           "nama": "Charlotte",
           "harga": 200000,
-          "dp": 100000
+          "dp": 100000,
+          "foto": "assets/foto/fig-002-v-charlotte.webp"
         },
         {
           "nama": "Bundle Kazuha +1",
           "harga": 500000,
-          "dp": 250000
+          "dp": 250000,
+          "foto": "assets/foto/fig-002-v-bundle-kazuha.webp"
         },
         {
           "nama": "Bundle Kokomi +1",
           "harga": 400000,
-          "dp": 200000
+          "dp": 200000,
+          "foto": "assets/foto/fig-002-v-bundle-kokomi.webp"
         }
       ],
       "kuota": 8,
       "terisi": 0,
       "tutup": "2026-12-10",
       "estimasi": "Januari 2027",
-      "foto": [],
+      "foto": [
+        "assets/foto/fig-002-1.webp",
+        "assets/foto/fig-002-2.webp",
+        "assets/foto/fig-002-3.webp",
+        "assets/foto/fig-002-4.webp"
+      ],
       "catatan": "Varian bundle berisi 2 figure. Stok tiap karakter terbatas."
     },
     {
@@ -102,26 +115,37 @@
       "dp": 214000,
       "varian": [
         {
-          "nama": "Klee"
+          "nama": "Klee",
+          "foto": "assets/foto/mer-002-v-klee.webp"
         },
         {
-          "nama": "Zhongli"
+          "nama": "Zhongli",
+          "foto": "assets/foto/mer-002-v-zhongli.webp"
         },
         {
-          "nama": "Tartaglia (Childe)"
+          "nama": "Tartaglia (Childe)",
+          "foto": "assets/foto/mer-002-v-tartaglia.webp"
         },
         {
-          "nama": "Neuvillette"
+          "nama": "Neuvillette",
+          "foto": "assets/foto/mer-002-v-neuvillette.webp"
         },
         {
-          "nama": "Citlali"
+          "nama": "Citlali",
+          "foto": "assets/foto/mer-002-v-citlali.webp"
         }
       ],
       "kuota": 20,
       "terisi": 0,
       "tutup": "2026-12-20",
       "estimasi": "Juni 2027",
-      "foto": [],
+      "foto": [
+        "assets/foto/mer-002-1.webp",
+        "assets/foto/mer-002-2.webp",
+        "assets/foto/mer-002-3.webp",
+        "assets/foto/mer-002-4.webp",
+        "assets/foto/mer-002-5.webp"
+      ],
       "catatan": "Barang pre-order resmi. Estimasi tiba mengikuti jadwal rilis dan bisa mundur."
     },
     {
@@ -146,7 +170,13 @@
       "terisi": 3,
       "tutup": "2026-12-15",
       "estimasi": "Maret 2027",
-      "foto": [],
+      "foto": [
+        "assets/foto/mer-001-1.webp",
+        "assets/foto/mer-001-2.webp",
+        "assets/foto/mer-001-3.webp",
+        "assets/foto/mer-001-4.webp",
+        "assets/foto/mer-001-5.webp"
+      ],
       "catatan": "Beberapa karakter masih menunggu jadwal rilis, jadi waktu tiba bisa berbeda per karakter."
     }
   ]
