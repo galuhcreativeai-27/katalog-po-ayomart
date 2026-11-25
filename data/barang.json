@@ -1,0 +1,153 @@
+{
+  "diperbarui": "2026-11-25T11:45:00+07:00",
+  "toko": {
+    "nama": "Ayomart",
+    "wa": "6285285390206",
+    "formOrder": "https://docs.google.com/forms/d/e/1FAIpQLSe9KRMVJHzF1IXyqqGelH3U7WKl3jnGXuNgz6QAYuoM1btYrw/viewform",
+    "entryBarang": "entry.344278496",
+    "entryVarian": "entry.596296185",
+    "entryJumlah": "entry.436004944"
+  },
+  "barang": [
+    {
+      "kode": "FIG-002",
+      "contoh": true,
+      "status": "Tayang",
+      "kategori": "Figure",
+      "nama": "Figure Genshin Impact Seri Academy's Light and Shadow Poetry (Pop Mart)",
+      "deskripsi": "Figure blind box resmi Pop Mart x Genshin Impact dengan tema seragam akademi. Detail cat rapi, ukuran pas untuk dipajang di meja. Pilih karakter yang kamu mau, tidak perlu untung-untungan blind box.",
+      "harga": 200000,
+      "dp": 100000,
+      "varian": [
+        {
+          "nama": "Furina Eyes on Me",
+          "habis": true
+        },
+        {
+          "nama": "Xiao",
+          "habis": true
+        },
+        {
+          "nama": "Kokomi",
+          "harga": 225000,
+          "dp": 113000
+        },
+        {
+          "nama": "Kaedehara Kazuha",
+          "habis": true
+        },
+        {
+          "nama": "Freminet",
+          "harga": 200000,
+          "dp": 100000
+        },
+        {
+          "nama": "Mualani",
+          "habis": true
+        },
+        {
+          "nama": "Bennett",
+          "harga": 200000,
+          "dp": 100000
+        },
+        {
+          "nama": "SECRET Furina Waltz",
+          "habis": true
+        },
+        {
+          "nama": "Nilou",
+          "habis": true
+        },
+        {
+          "nama": "Citlali",
+          "harga": 265000,
+          "dp": 133000
+        },
+        {
+          "nama": "Kinich",
+          "harga": 300000,
+          "dp": 150000
+        },
+        {
+          "nama": "Charlotte",
+          "harga": 200000,
+          "dp": 100000
+        },
+        {
+          "nama": "Bundle Kazuha +1",
+          "harga": 500000,
+          "dp": 250000
+        },
+        {
+          "nama": "Bundle Kokomi +1",
+          "harga": 400000,
+          "dp": 200000
+        }
+      ],
+      "kuota": 8,
+      "terisi": 0,
+      "tutup": "2026-12-10",
+      "estimasi": "Januari 2027",
+      "foto": [],
+      "catatan": "Varian bundle berisi 2 figure. Stok tiap karakter terbatas."
+    },
+    {
+      "kode": "MER-002",
+      "contoh": true,
+      "status": "Tayang",
+      "kategori": "Merchandise",
+      "nama": "Gantungan Plush Genshin Impact Seri Winter Cozy",
+      "deskripsi": "Gantungan boneka plush mini karakter Genshin Impact dengan kostum musim dingin yang hangat dan menggemaskan. Produk resmi berlisensi HoYoverse. Cocok digantung di tas atau dipajang di meja.",
+      "harga": 428000,
+      "dp": 214000,
+      "varian": [
+        {
+          "nama": "Klee"
+        },
+        {
+          "nama": "Zhongli"
+        },
+        {
+          "nama": "Tartaglia (Childe)"
+        },
+        {
+          "nama": "Neuvillette"
+        },
+        {
+          "nama": "Citlali"
+        }
+      ],
+      "kuota": 20,
+      "terisi": 0,
+      "tutup": "2026-12-20",
+      "estimasi": "Juni 2027",
+      "foto": [],
+      "catatan": "Barang pre-order resmi. Estimasi tiba mengikuti jadwal rilis dan bisa mundur."
+    },
+    {
+      "kode": "MER-001",
+      "contoh": true,
+      "status": "Tayang",
+      "kategori": "Merchandise",
+      "nama": "Boneka Plush Chibi Honkai: Star Rail",
+      "deskripsi": "Boneka plush versi chibi, produk resmi berlisensi miHoYo. Bahan lembut, jahitan rapi, cocok dipajang atau dibawa jalan. Pilih karakter favoritmu di bagian varian.",
+      "harga": 375000,
+      "dp": 188000,
+      "varian": [
+        "Dan Heng",
+        "March 7th",
+        "Jing Yuan",
+        "Blade",
+        "Kafka",
+        "Acheron",
+        "Firefly"
+      ],
+      "kuota": 10,
+      "terisi": 3,
+      "tutup": "2026-12-15",
+      "estimasi": "Maret 2027",
+      "foto": [],
+      "catatan": "Beberapa karakter masih menunggu jadwal rilis, jadi waktu tiba bisa berbeda per karakter."
+    }
+  ]
+}

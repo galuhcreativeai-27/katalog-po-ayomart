@@ -2,300 +2,462 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ayomart Open PO</title>
-<meta name="description" content="Open pre-order figure, merchandise, dan kostum cosplay dari Taobao di Ayomart.">
-<link rel="icon" href="assets/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Open PO Ayomart · Figure, Merchandise, Kostum Cosplay</title>
+<meta name="description" content="Katalog open pre-order Ayomart: figure, merchandise, dan kostum cosplay. Cek stok dulu, baru DP.">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Open PO Ayomart">
+<meta property="og:description" content="Figure, merchandise, dan kostum cosplay. Cek stok dulu, baru DP.">
+<meta property="og:image" content="assets/ikon.png">
+<link rel="icon" href="assets/ikon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* VOICE: toko hobi yang ramai tapi rapi; jelas soal harga, DP, dan tenggat
-   IDEA: rak toko figure Jepang: kartu barang seperti kotak blister dengan stiker harga kuning dan stiker tenggat merah
-   PICTURE: etalase barang itu sendiri, langsung di layar pertama di bawah judul singkat
-   COLOUR and TYPE: putih, tinta hitam, merah sinyal untuk tenggat, kuning stiker harga; Dela Gothic One + Plus Jakarta Sans
-   LAYOUT: header logo, judul + filter, grid kartu, lalu cara ikut PO, barang tiba, aturan, FAQ */
-:root{color-scheme:light dark;
---bg:light-dark(#ffffff,#131116);--ink:light-dark(#16131b,#f4f1f6);--mut:light-dark(#6b6572,#a59fac);
---line:light-dark(#ebe7ee,#2c2731);--card:light-dark(#ffffff,#1b1820);--soft:light-dark(#f6f4f8,#1f1b24);
---red:light-dark(#e3122c,#ff4d5e);--yel:#ffd23f;--yelink:#2a2100;--ok:light-dark(#11804a,#4fd38b);--blue:#0030a8}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
-*{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:72px;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Plus Jakarta Sans",system-ui,sans-serif;overflow-x:clip}
-h1,h2,h3{font-family:"Dela Gothic One","Plus Jakarta Sans",sans-serif;font-weight:400;line-height:1.08;margin:0;text-wrap:balance}
-a{color:inherit}
-.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
-button{font:inherit;color:inherit}
-:focus-visible{outline:3px solid color-mix(in srgb,var(--red) 60%,transparent);outline-offset:2px}
+  :root{
+    --biru:#002FA7; --biru-muda:#8DA7FF; --biru-pucat:#E8EEFF; --oranye:#EC6523;
+    --judul:#282828; --isi:#64666A; --sekunder:#ABB1C2; --garis:#D0D8F1; --latar:#F9FBFF; --putih:#fff;
+    --r-besar:20px; --r-sedang:12px; --r-kecil:8px;
+    --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+    --font-judul:"Helvetica Neue",Helvetica,Arial,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --angka:"Fugaz One",var(--font);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--judul);background:var(--latar);
+    background-image:linear-gradient(rgba(141,167,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(141,167,255,.08) 1px,transparent 1px);
+    background-size:28px 28px;-webkit-font-smoothing:antialiased;line-height:1.5}
+  h1,h2,h3{font-family:var(--font-judul)}
+  img{display:block;max-width:100%}
+  a{color:var(--biru)}
+  button{font:inherit;cursor:pointer}
+  .wadah{max-width:1080px;margin:0 auto;padding:0 15px}
 
-header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
-.logo{display:block;width:150px;height:27px;background:var(--ink);-webkit-mask:url(assets/logo-ayomart.png) left center/contain no-repeat;mask:url(assets/logo-ayomart.png) left center/contain no-repeat;flex:none}
-.logo span{position:absolute;left:-9999px}
-nav.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
-nav.links a{flex:none;text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:999px}
-nav.links a:hover{background:var(--soft)}
-.wa{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;font-size:15px;flex:none}
-@media(max-width:760px){nav.links{display:none}.wa{margin-left:auto}}
+  /* Header */
+  header.atas{position:sticky;top:0;z-index:20;background:rgba(249,251,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--garis)}
+  header.atas .wadah{display:flex;align-items:center;justify-content:space-between;height:60px}
+  header.atas img{height:22px;width:auto}
+  .tombol-wa-kecil{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1.5px solid var(--biru);border-radius:999px;color:var(--biru);text-decoration:none;font-weight:700;font-size:13px;background:#fff}
+  .tombol-wa-kecil svg{width:16px;height:16px}
 
-.intro{padding:clamp(28px,4vw,48px) 0 18px}
-.intro .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end}
-.intro h1{font-size:clamp(34px,5.4vw,56px)}
-.intro h1 em{font-style:normal;color:var(--red)}
-.intro p{margin:12px 0 0;color:var(--mut);max-width:60ch;font-size:17px}
-.stamp{border:2px solid var(--ink);border-radius:14px;padding:12px 16px;text-align:center;transform:rotate(2deg)}
-.stamp b{display:block;font:400 34px/1 "Dela Gothic One",sans-serif}
-.stamp span{font-size:13px;color:var(--mut)}
-@media(max-width:600px){.intro .wrap{grid-template-columns:minmax(0,1fr)}.stamp{justify-self:start;transform:none;display:flex;gap:10px;align-items:baseline}}
+  /* Hero */
+  .hero{padding:28px 0 8px}
+  .hero-kartu{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--biru) 0%,#1D4BD1 60%,#4C6FF0 100%);color:#fff;border-radius:var(--r-besar);padding:28px 22px 26px}
+  .hero-kartu h1{margin:0 0 8px;font-size:clamp(26px,6vw,40px);line-height:1.1;letter-spacing:-.5px;max-width:15ch}
+  .hero-kartu p{margin:0;max-width:44ch;color:#DCE4FF;font-size:15px}
+  .hero-kartu .maskot{position:absolute;right:-10px;bottom:-18px;width:min(42vw,220px);opacity:.95;pointer-events:none;transform:rotate(-8deg)}
+  .hero-isi{position:relative;z-index:1;max-width:62%}
+  @media (min-width:700px){.hero-isi{max-width:70%}.hero-kartu{padding:40px 36px}}
+  .pita{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;letter-spacing:.3px;margin-bottom:12px}
 
-.demo{background:var(--yel);color:var(--yelink);font-size:14px;font-weight:600;text-align:center;padding:8px 16px}
-.tools{position:sticky;top:64px;z-index:15;background:var(--bg);border-bottom:1px solid var(--line)}
-.tools .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-block:12px}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{min-height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:600;font-size:15px;cursor:pointer}
-.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-.chip small{font-weight:500;opacity:.7;margin-left:4px}
-.search{margin-left:auto;display:flex;gap:8px;flex:1 1 280px;max-width:420px}
-.search input,.search select{min-height:42px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:inherit;font-size:16px;padding:0 16px;width:100%}
-.search select{width:auto;flex:none;padding-right:10px}
+  /* Langkah */
+  .langkah{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0 0}
+  @media (min-width:700px){.langkah{grid-template-columns:repeat(4,1fr)}}
+  .langkah div{background:#fff;border:1px solid var(--garis);border-radius:var(--r-sedang);padding:12px}
+  .langkah b{display:block;font-family:var(--angka);color:var(--biru);font-size:18px;line-height:1;margin-bottom:6px;font-weight:400}
+  .langkah span{font-size:13px;color:var(--isi)}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:clamp(14px,2vw,22px);padding:22px 0 40px}
-.card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1.5px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;text-align:left;padding:0}
-.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(20,10,30,.45)}
-.pic{position:relative;aspect-ratio:1/1;overflow:hidden}
-.pic svg,.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.tag{position:absolute;top:10px;left:10px;font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:8px;background:var(--red);color:#fff;white-space:nowrap}
-.tag.off{background:#3a3640}.tag.tiba{background:var(--ok);color:#fff}
-.kode{position:absolute;top:12px;right:12px;font-size:12px;font-weight:700;color:#16131b;background:rgba(255,255,255,.85);padding:3px 8px;border-radius:6px}
-.price{position:absolute;bottom:12px;right:10px;background:var(--yel);color:var(--yelink);font:400 18px/1 "Dela Gothic One",sans-serif;padding:9px 12px 8px;border-radius:6px;transform:rotate(-3deg);box-shadow:2px 3px 0 rgba(0,0,0,.18);white-space:nowrap}
-.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.cat{font-size:13px;font-weight:600;color:var(--mut)}
-.card h3{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:16.5px;line-height:1.3}
-.dp{font-size:14px;color:var(--mut)}.dp b{color:var(--ink)}
-.meter{height:7px;background:var(--line);border-radius:9px;overflow:hidden}.meter i{display:block;height:100%;background:var(--ink);border-radius:9px}
-.meter.hot i{background:var(--red)}
-.slot{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-top:auto;padding-top:4px}
-.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:50px 0}
+  /* Toolbar */
+  .judul-bagian{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:32px 0 12px}
+  .judul-bagian h2{margin:0;font-size:20px}
+  .judul-bagian small{color:var(--sekunder);font-size:12px}
+  .alat{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+  .cari{position:relative}
+  .cari input{width:100%;height:44px;border:1px solid var(--garis);border-radius:999px;padding:0 16px 0 42px;font:inherit;font-size:15px;background:#fff;color:var(--judul);outline:none}
+  .cari input:focus{border-color:var(--biru-muda);box-shadow:0 0 0 3px var(--biru-pucat)}
+  .cari svg{position:absolute;left:14px;top:12px;width:20px;height:20px;color:var(--sekunder)}
+  .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;border:1px solid var(--garis);background:#fff;color:var(--isi);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600}
+  .chip[aria-pressed="true"]{background:var(--biru);border-color:var(--biru);color:#fff}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer}
-.btn.pri{background:var(--red);border-color:var(--red);color:#fff}
-.btn.dis{opacity:.45;pointer-events:none}
+  /* Grid kartu */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media (min-width:700px){.grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+  @media (min-width:980px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .kartu{background:#fff;border-radius:var(--r-sedang);overflow:hidden;border:1px solid #EEF2FC;display:flex;flex-direction:column;text-align:left;padding:0;color:inherit;transition:transform .15s,box-shadow .15s}
+  .kartu:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,47,167,.10)}
+  .kartu:focus-visible{outline:3px solid var(--biru-muda);outline-offset:2px}
+  .foto{position:relative;aspect-ratio:1;background:var(--biru-pucat)}
+  .foto img{width:100%;height:100%;object-fit:cover}
+  .lencana{position:absolute;left:8px;top:8px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#fff;color:var(--biru)}
+  .lencana.oranye{background:var(--oranye);color:#fff}
+  .lencana.abu{background:#fff;color:var(--isi)}
+  .lencana.contoh{left:auto;top:auto;right:8px;bottom:8px;background:rgba(40,40,40,.85);color:#fff;font-size:10px}
+  .badan{padding:10px 10px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .kode{font-size:11px;color:var(--sekunder);font-weight:700;letter-spacing:.4px}
+  .nama{font-size:14px;line-height:1.35;color:var(--judul);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em}
+  .harga{font-family:var(--angka);color:var(--biru);font-size:18px;line-height:1.1;margin-top:2px}
+  .harga small{font-family:var(--font);font-size:11px;color:var(--isi);font-weight:400}
+  .dp{font-size:12px;color:var(--isi)}
+  .meta{display:flex;justify-content:space-between;gap:6px;font-size:11px;color:var(--isi);margin-top:6px}
+  .meta .mendesak{color:var(--oranye);font-weight:700}
+  .bar{height:5px;background:var(--biru-pucat);border-radius:99px;overflow:hidden;margin-top:4px}
+  .bar i{display:block;height:100%;background:var(--biru);border-radius:99px}
+  .bar.hampir i{background:var(--oranye)}
 
-section.band{padding:clamp(36px,5vw,72px) 0;border-top:1px solid var(--line)}
-section.band h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:8px}
-.lead{color:var(--mut);margin:0 0 26px;max-width:62ch}
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;counter-reset:s}
-.steps li{background:var(--soft);border-radius:16px;padding:18px;position:relative}
-.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--bg);font:400 16px "Dela Gothic One",sans-serif;margin-bottom:12px}
-.steps li.key::before{background:var(--red);color:#fff}
-.steps b{display:block;font-size:16px;margin-bottom:4px}
-.steps span{font-size:14.5px;color:var(--mut)}
-@media(max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
-.row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,260px);gap:16px;overflow-x:auto;padding-bottom:8px}
-.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.rules div{border:1.5px solid var(--line);border-radius:16px;padding:18px}
-.rules b{display:block;margin-bottom:4px}.rules p{margin:0;color:var(--mut);font-size:15px}
-@media(max-width:700px){.rules{grid-template-columns:minmax(0,1fr)}}
-details{border-bottom:1px solid var(--line);padding:4px 0}
-summary{cursor:pointer;font-weight:700;font-size:17px;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
-summary::after{content:"+";font:400 22px/1 "Dela Gothic One",sans-serif;color:var(--red)}
-details[open] summary::after{content:"−"}
-details p{margin:0 0 16px;color:var(--mut);max-width:70ch}
-footer{background:var(--ink);color:var(--bg);padding:40px 0}
-footer .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
-footer .logo{background:var(--bg)}
-footer p{margin:6px 0 0;opacity:.7;font-size:14px}
-footer .wa{background:var(--yel);color:var(--yelink)}
+  .kosong{background:#fff;border:1px dashed var(--garis);border-radius:var(--r-besar);padding:28px 20px;text-align:center;color:var(--isi)}
+  .kosong img{width:120px;margin:0 auto 8px}
+  .kosong b{display:block;color:var(--judul);font-size:16px;margin-bottom:4px}
 
-.ov{position:fixed;inset:0;z-index:50;background:rgba(14,10,18,.6);display:flex;align-items:flex-start;justify-content:center;padding:4vh 12px;overflow-y:auto}
-.ov[hidden]{display:none}
-.sheet{background:var(--bg);border-radius:22px;width:min(980px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden;position:relative}
-.sheet .pic{aspect-ratio:auto;min-height:420px}
-.info{padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:14px}
-.info h2{font-size:clamp(24px,3vw,32px)}
-.close{position:absolute;top:12px;right:12px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:var(--bg);font-size:22px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-.big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.big b{font:400 30px/1 "Dela Gothic One",sans-serif}
-.big span{color:var(--mut)}
-dl.kv{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:8px 14px;margin:0;font-size:15px}
-dl.kv dt{color:var(--mut)}dl.kv dd{margin:0;font-weight:600}
-.vars{display:flex;flex-wrap:wrap;gap:8px}
-.vars button{min-height:40px;padding:0 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;font-weight:600}
-.vars button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
-.note{font-size:14px;color:var(--mut);background:var(--soft);border-radius:12px;padding:12px 14px;margin:0}
-.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-.acts .btn{flex:1 1 180px}
-@media(max-width:760px){.sheet{grid-template-columns:minmax(0,1fr)}.sheet .pic{min-height:0;aspect-ratio:4/3}}
-@media(max-width:600px){
-  .tools{position:static}
-  .chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px}.chip{flex:none}
-  .search{max-width:none;margin-left:0}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:16px}
-  .body{padding:10px 12px 12px;gap:6px}.card h3{font-size:14.5px}.dp,.slot{font-size:12.5px}.cat{font-size:12px}
-  .price{font-size:14px;padding:7px 9px 6px;bottom:8px;right:6px}
-  .tag{font-size:11px;padding:4px 7px;top:8px;left:8px}.kode{display:none}
-  .slot{flex-direction:column;gap:0}
-  .stamp b{font-size:26px}.stamp{padding:8px 14px}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}.card:hover{transform:none}}
+  /* Aturan & FAQ */
+  .panel{background:#fff;border:1px solid var(--garis);border-radius:var(--r-besar);padding:18px 18px 8px}
+  .panel ul{margin:0;padding-left:18px;color:var(--isi);font-size:14px}
+  .panel li{margin-bottom:10px}
+  details{background:#fff;border:1px solid var(--garis);border-radius:var(--r-sedang);margin-bottom:8px}
+  summary{list-style:none;cursor:pointer;padding:14px 44px 14px 16px;font-weight:700;font-size:15px;position:relative}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";position:absolute;right:18px;top:20px;width:8px;height:8px;border-right:2px solid var(--biru);border-bottom:2px solid var(--biru);transform:rotate(45deg);transition:transform .2s}
+  details[open] summary::after{transform:rotate(-135deg);top:23px}
+  details p{margin:0;padding:0 16px 14px;color:var(--isi);font-size:14px}
+
+  footer{margin:40px 0 0;padding:28px 0 40px;background:var(--biru);color:#C9D5FF;font-size:13px}
+  footer img{height:20px;width:auto;margin-bottom:10px}
+  footer a{color:#fff}
+
+  /* Detail */
+  .lapis{position:fixed;inset:0;z-index:50;background:rgba(17,24,48,.5);display:none;align-items:flex-end;justify-content:center}
+  .lapis.buka{display:flex}
+  .detail{background:var(--latar);width:100%;max-width:560px;max-height:94vh;overflow-y:auto;border-radius:var(--r-besar) var(--r-besar) 0 0;animation:naik .22s ease-out;position:relative}
+  @media (min-width:700px){.lapis{align-items:center}.detail{border-radius:var(--r-besar);max-height:90vh}}
+  @keyframes naik{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+  .tutup-detail{position:absolute;right:12px;top:12px;z-index:3;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--judul);font-size:20px;line-height:36px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .galeri{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:var(--biru-pucat)}
+  .galeri::-webkit-scrollbar{display:none}
+  .galeri img{flex:none;width:100%;aspect-ratio:1;object-fit:cover;scroll-snap-align:center}
+  .titik{display:flex;justify-content:center;gap:6px;padding:8px 0 0}
+  .titik i{width:6px;height:6px;border-radius:99px;background:var(--garis);transition:all .2s}
+  .titik i.aktif{width:18px;background:var(--biru)}
+  .isi-detail{padding:12px 16px 110px}
+  .isi-detail h3{margin:6px 0 6px;font-size:20px;line-height:1.3}
+  .baris-harga{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .baris-harga .harga{font-size:28px}
+  .kotak-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+  .kotak-info div{background:#fff;border:1px solid var(--garis);border-radius:var(--r-kecil);padding:10px}
+  .kotak-info small{display:block;color:var(--sekunder);font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+  .kotak-info b{font-size:14px}
+  .label{font-size:13px;font-weight:700;margin:16px 0 8px}
+  .varian{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+  .vr{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--garis);border-radius:var(--r-kecil);padding:6px;min-width:0}
+  .vr.dipilih{border-color:var(--biru);background:var(--biru-pucat)}
+  .vr-pilih{display:flex;align-items:center;gap:8px;flex:1;min-width:0;border:0;background:none;padding:0;text-align:left;color:var(--judul);font-size:13px}
+  .vr-pilih img{width:40px;height:40px;border-radius:6px;object-fit:cover;flex:none;background:var(--biru-pucat)}
+  .vr-pilih span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .vr.dipilih .vr-pilih span{color:var(--biru);font-weight:700}
+  .vr-pilih .hv{font-family:var(--angka);font-weight:400;color:var(--biru);font-size:12px}
+  .jml{display:none;align-items:center;gap:2px;flex:none}
+  .vr.dipilih .jml,.jml.tetap{display:flex}
+  .jml button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--biru);background:#fff;color:var(--biru);font-weight:700;line-height:1;padding:0}
+  .jml b{min-width:22px;text-align:center;font-size:14px}
+  .jml-tunggal{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--garis);border-radius:var(--r-kecil);padding:8px 10px;font-size:14px}
+  .ringkas{margin-top:10px;background:#fff;border:1px dashed var(--biru-muda);border-radius:var(--r-kecil);padding:10px 12px;font-size:13px;color:var(--isi)}
+  .ringkas b{color:var(--judul)}
+  .ringkas .tot{font-family:var(--angka);color:var(--biru);font-size:16px;font-weight:400}
+  .jml-varian{font-size:11px;color:var(--isi);margin-top:2px}
+  .catatan{background:#FFF4EC;border:1px solid #F9D2BA;color:#8A3A10;border-radius:var(--r-kecil);padding:10px 12px;font-size:13px;margin-top:14px}
+  .desk{color:var(--isi);font-size:14px;margin:10px 0 0}
+  .aksi{position:sticky;bottom:0;display:flex;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(249,251,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--garis);margin-top:-96px}
+  .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;border-radius:var(--r-sedang);font-weight:700;font-size:15px;text-decoration:none;border:0}
+  .btn.utama{background:var(--biru);color:#fff}
+  .btn.utama:hover{background:#00268A}
+  .btn.utama[aria-disabled="true"]{background:var(--sekunder);pointer-events:none}
+  .btn.kedua{flex:0 0 auto;padding:0 16px;background:#fff;color:var(--biru);border:1.5px solid var(--biru)}
+  .info-kecil{font-size:12px;color:var(--isi);margin-top:12px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <a class="logo" href="#katalog" aria-label="Ayomart"><span>Ayomart</span></a>
-  <nav class="links"><a href="#katalog">Katalog</a><a href="#cara-order">Cara ikut PO</a><a href="#aturan">Aturan</a><a href="#faq">FAQ</a></nav>
-  <a class="wa" id="waTop" href="#" target="_blank" rel="noopener">Chat WhatsApp</a>
-</div></header>
-<div id="demo" class="demo" hidden>Ini tampilan contoh dengan barang fiktif. Isi katalog akan diganti dengan barang PO asli.</div>
 
-<main id="katalog">
-  <div class="intro"><div class="wrap">
-    <div><h1>Open PO <em>Ayomart</em></h1><p>Figure, merchandise, dan kostum cosplay langsung dari Taobao. Pilih barang, isi form, kami cek stoknya dulu sebelum kamu bayar.</p></div>
-    <div class="stamp"><b id="nOpen">0</b><span>barang sedang open PO</span></div>
-  </div></div>
-  <div class="tools"><div class="wrap">
-    <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
-    <div class="search"><input id="q" type="search" placeholder="Cari barang atau kode" aria-label="Cari barang"><select id="sort" aria-label="Urutkan"><option value="tutup">Tutup terdekat</option><option value="murah">Termurah</option><option value="mahal">Termahal</option></select></div>
-  </div></div>
-  <div class="wrap"><div class="grid" id="grid" aria-live="polite"></div></div>
+<header class="atas">
+  <div class="wadah">
+    <a href="#" aria-label="Ayomart, ke atas"><img src="assets/logo.png" alt="AYOMART" width="130" height="22"></a>
+    <a class="tombol-wa-kecil" id="waAtas" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.6-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+      Tanya admin
+    </a>
+  </div>
+</header>
+
+<main class="wadah">
+  <section class="hero">
+    <div class="hero-kartu">
+      <div class="hero-isi">
+        <span class="pita">OPEN PRE-ORDER</span>
+        <h1>Figure, merch &amp; kostum cosplay incaranmu, kami yang carikan</h1>
+        <p>Pilih barang, isi form, tunggu admin cek stok. DP baru dibayar setelah barangnya pasti ada.</p>
+      </div>
+      <img class="maskot" src="assets/maskot.webp" alt="" width="220" height="220">
+    </div>
+    <div class="langkah" aria-label="Cara ikut PO">
+      <div><b>1</b><span>Pilih barang, klik <strong>Ikut PO</strong>, isi form</span></div>
+      <div><b>2</b><span>Admin cek stok &amp; kirim tagihan DP via WA</span></div>
+      <div><b>3</b><span>Bayar DP maksimal 1×24 jam, kirim bukti</span></div>
+      <div><b>4</b><span>Barang tiba, lunasi, barang dikirim</span></div>
+    </div>
+  </section>
+
+  <section id="katalog" aria-labelledby="judulKatalog">
+    <div class="judul-bagian">
+      <h2 id="judulKatalog">PO yang sedang dibuka</h2>
+      <small id="diperbarui"></small>
+    </div>
+    <div class="alat">
+      <label class="cari">
+        <span class="sr">Cari barang</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="cari" type="search" placeholder="Cari nama atau kode barang" autocomplete="off">
+      </label>
+      <div class="chips" role="group" aria-label="Filter kategori" id="chips"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="tiba" aria-labelledby="judulTiba" hidden>
+    <div class="judul-bagian">
+      <h2 id="judulTiba">Sudah tiba di Indonesia</h2>
+      <small>Bukti PO sebelumnya</small>
+    </div>
+    <div class="grid" id="gridTiba"></div>
+  </section>
+
+  <section id="aturan" aria-labelledby="judulAturan">
+    <div class="judul-bagian"><h2 id="judulAturan">Aturan PO</h2></div>
+    <div class="panel">
+      <ul>
+        <li><strong>Jangan transfer apa pun sebelum admin mengonfirmasi stok lewat WhatsApp.</strong></li>
+        <li>Setelah stok dikonfirmasi, DP dibayar maksimal 1×24 jam. Lewat dari itu, pesanan batal otomatis.</li>
+        <li>DP tidak dapat dikembalikan jika pesanan dibatalkan oleh customer.</li>
+        <li>Pelunasan paling lambat 7 hari setelah barang tiba. Lewat dari itu, DP hangus dan barang dapat dijual ke orang lain.</li>
+        <li>Jika supplier membatalkan atau barang gagal didapat, DP dikembalikan penuh.</li>
+        <li>Estimasi tiba bisa mundur karena jadwal rilis atau pengiriman. Admin akan selalu mengabari.</li>
+        <li>Ongkir dalam negeri (gudang ke alamatmu) ditanggung customer dan diinfokan admin lewat WA saat pelunasan.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="judulFaq">
+    <div class="judul-bagian"><h2 id="judulFaq">Pertanyaan yang sering ditanya</h2></div>
+    <details><summary>Harga di katalog sudah termasuk apa saja?</summary><p>Harga sudah termasuk harga barang, pengiriman sampai gudang kami, dan biaya jasa. Yang belum termasuk hanya ongkir dari gudang kami ke alamatmu.</p></details>
+    <details><summary>Kapan saya transfer DP?</summary><p>Setelah kamu isi form, admin cek dulu ketersediaan barangnya. Kalau tersedia, admin kirim nominal DP dan link konfirmasi lewat WhatsApp. Baru setelah itu kamu transfer, maksimal 1×24 jam.</p></details>
+    <details><summary>Bagaimana kalau stoknya ternyata habis?</summary><p>Admin akan mengabari lewat WhatsApp. Karena kamu belum transfer apa pun, tidak ada uang yang perlu dikembalikan.</p></details>
+    <details><summary>Berapa lama sampai barang tiba?</summary><p>Lihat estimasi tiba di setiap barang. Untuk barang pre-order resmi, tanggalnya mengikuti jadwal rilis dari pembuatnya dan bisa mundur. Admin akan mengabari setiap ada perubahan.</p></details>
+    <details><summary>Kenapa form konfirmasi pembayaran minta login Google?</summary><p>Karena ada tempat upload bukti transfer, dan Google mewajibkan login untuk upload. Kalau tidak punya akun Google, kirim bukti transfer langsung ke WhatsApp admin.</p></details>
+    <details><summary>Slot di katalog real-time?</summary><p>Tidak. Angka slot diperbarui berkala oleh admin. Kalau slot hampir penuh, sebaiknya segera isi form atau tanya admin dulu.</p></details>
+  </section>
 </main>
 
-<section class="band" id="cara-order"><div class="wrap">
-  <h2>Cara ikut PO</h2>
-  <p class="lead">Kamu tidak perlu transfer apa pun sebelum kami pastikan barangnya masih ada di Taobao.</p>
-  <ol class="steps">
-    <li><b>Pilih barang</b><span>Buka barang di katalog, pilih varian, lalu tekan Ikut PO.</span></li>
-    <li><b>Isi form</b><span>Form pesanan terbuka dengan barang sudah terpilih. Isi nama, WhatsApp, dan alamat.</span></li>
-    <li class="key"><b>Tunggu cek stok</b><span>Admin mengecek ketersediaan dan menghubungi kamu lewat WhatsApp. Jangan transfer dulu.</span></li>
-    <li><b>Bayar DP</b><span>Kalau tersedia, bayar DP dalam 1×24 jam dan kirim bukti lewat link yang kami berikan.</span></li>
-    <li><b>Lunasi saat tiba</b><span>Begitu barang sampai, kami kirim tagihan pelunasan dan ongkir. Setelah lunas, barang dikirim.</span></li>
-  </ol>
-</div></section>
-
-<section class="band" id="sudah-tiba" hidden><div class="wrap">
-  <h2>Sudah tiba di Ayomart</h2>
-  <p class="lead">Beberapa PO sebelumnya yang sudah sampai dan dikirim ke customer.</p>
-  <div class="row" id="tiba"></div>
-</div></section>
-
-<section class="band" id="aturan"><div class="wrap">
-  <h2>Aturan PO</h2>
-  <p class="lead">Dengan ikut PO, kamu dianggap setuju dengan aturan berikut.</p>
-  <div class="rules">
-    <div><b>Jangan transfer sebelum dikonfirmasi</b><p>Tunggu WhatsApp dari admin bahwa barang tersedia. Transfer sebelum konfirmasi tidak kami tanggung.</p></div>
-    <div><b>DP dalam 1×24 jam</b><p>Setelah dikonfirmasi tersedia, DP wajib masuk dalam 1×24 jam. Lewat dari itu, pesanan batal dan slot dibuka untuk orang lain.</p></div>
-    <div><b>DP tidak bisa dikembalikan jika kamu batal</b><p>DP hangus kalau pesanan dibatalkan oleh customer.</p></div>
-    <div><b>Pelunasan maksimal 7 hari setelah tiba</b><p>Lewat dari 7 hari, DP hangus dan barang dapat dijual ke orang lain.</p></div>
-    <div><b>Supplier batal, DP kembali penuh</b><p>Kalau barang gagal didapat dari supplier, DP dikembalikan 100%.</p></div>
-    <div><b>Estimasi tiba bisa mundur</b><p>Jadwal rilis dan pengiriman kadang berubah. Kami selalu kabari kalau ada perubahan.</p></div>
+<footer>
+  <div class="wadah">
+    <img src="assets/logo-putih.png" alt="AYOMART" width="118" height="20">
+    <div>Jasa open pre-order figure, merchandise, dan kostum cosplay.</div>
+    <div style="margin-top:8px">WhatsApp admin: <a id="waBawah" href="#" target="_blank" rel="noopener">+62 852-8539-0206</a></div>
   </div>
-</div></section>
+</footer>
 
-<section class="band" id="faq"><div class="wrap">
-  <h2>Pertanyaan yang sering ditanya</h2>
-  <details><summary>Harga sudah termasuk apa saja?</summary><p>Harga di katalog sudah termasuk harga barang dan ongkir dari China ke Indonesia. Ongkir dari Ayomart ke alamatmu ditagih terpisah saat pelunasan.</p></details>
-  <details><summary>Kenapa harus menunggu cek stok?</summary><p>Stok di Taobao bisa habis kapan saja selama masa PO. Dengan cek stok dulu, kamu tidak perlu repot menunggu refund kalau barangnya ternyata kosong.</p></details>
-  <details><summary>Bagaimana cara kirim bukti transfer?</summary><p>Setelah stok dikonfirmasi, admin mengirim link konfirmasi pembayaran lewat WhatsApp. Kalau tidak punya akun Google, bukti bisa dikirim langsung lewat WhatsApp.</p></details>
-  <details><summary>Bisa pesan lebih dari satu barang?</summary><p>Bisa. Isi form sekali untuk setiap barang yang berbeda supaya pesananmu tercatat rapi.</p></details>
-  <details><summary>Untuk kostum, ukurannya bagaimana?</summary><p>Pilih ukuran standar, atau pilih Custom lalu tulis lingkar dada, pinggang, dan tinggi badan di kolom varian pada form.</p></details>
-  <details><summary>Barang yang saya mau tidak ada di katalog</summary><p>Kirim link Taobao atau Tmall-nya lewat WhatsApp. Kalau memungkinkan, kami bukakan PO untuk barang itu.</p></details>
-</div></section>
-
-<footer><div class="wrap">
-  <div><span class="logo" role="img" aria-label="Ayomart"></span><p id="upd">Jasa pre-order figure, merchandise, dan kostum cosplay.</p></div>
-  <a class="wa" id="waFoot" href="#" target="_blank" rel="noopener">Tanya lewat WhatsApp</a>
-</div></footer>
-
-<div class="ov" id="ov" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="dTitle" id="sheet"></div></div>
+<div class="lapis" id="lapis" aria-hidden="true">
+  <div class="detail" role="dialog" aria-modal="true" aria-labelledby="dNama" id="detail"></div>
+</div>
 
 <script>
-{
-const $=s=>document.querySelector(s);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const rp=n=>'Rp'+Math.round(+n||0).toLocaleString('id-ID');
-const tglPendek=d=>new Date(d+'T00:00:00+07:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
-const today=()=>{const n=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jakarta'}));n.setHours(0,0,0,0);return n};
-const sisaHari=d=>Math.round((new Date(d+'T00:00:00')-today())/864e5);
-const CATS=['Semua','Figure','Merchandise','Kostum cosplay'];
-const PAL={'Figure':['#ffe3e6','#e3122c','#ffb3bc'],'Merchandise':['#fff1c2','#16131b','#ffd23f'],'Kostum cosplay':['#e2e9ff','#0030a8','#9db3ff']};
-let D={toko:{},barang:[]},cat='Semua',q='',sort='tutup',pick={};
+(function(){
+  "use strict";
+  var DATA=null, kategoriAktif="Semua", kataCari="";
+  var KATEGORI=["Semua","Figure","Merchandise","Kostum cosplay"];
+  var $=function(id){return document.getElementById(id)};
 
-function state(b){
-  if(b.status==='tiba')return{k:'tiba',label:'Sudah tiba',order:false};
-  const d=b.tutup?sisaHari(b.tutup):99;
-  if(b.status==='ditutup'||d<0)return{k:'off',label:'PO ditutup',order:false};
-  if(b.kuota&&b.terisi>=b.kuota)return{k:'off',label:'Slot penuh',order:false};
-  return{k:'open',label:d===0?'Tutup hari ini':d===1?'Tutup besok':'Tutup '+d+' hari lagi',order:true,d};
-}
-function art(b){
-  const [bg,ink,acc]=PAL[b.kategori]||PAL['Merchandise'];
-  let s='';
-  if(b.kategori==='Figure')s=`<ellipse cx="200" cy="318" rx="92" ry="20" fill="${ink}" opacity=".9"/><path d="M160 300 L172 190 Q200 176 228 190 L240 300 Z" fill="${ink}"/><path d="M150 205 Q200 170 250 205 L236 232 Q200 214 164 232 Z" fill="${acc}"/><circle cx="200" cy="146" r="42" fill="#fff"/><path d="M152 150 Q150 92 200 92 Q252 92 248 150 Q238 118 200 116 Q164 118 152 150 Z" fill="${ink}"/><circle cx="186" cy="152" r="5" fill="${ink}"/><circle cx="214" cy="152" r="5" fill="${ink}"/>`;
-  else if(b.kategori==='Kostum cosplay')s=`<path d="M138 120 L176 100 Q200 128 224 100 L262 120 L300 196 L264 214 L250 186 L250 318 L150 318 L150 186 L136 214 L100 196 Z" fill="#fff" stroke="${ink}" stroke-width="5" stroke-linejoin="round"/><path d="M176 100 L200 150 L224 100 L250 112 L218 170 L182 170 L150 112 Z" fill="${ink}"/><path d="M190 168 L210 168 L216 214 L200 230 L184 214 Z" fill="${acc}" stroke="${ink}" stroke-width="3"/><path d="M150 286 L250 286" stroke="${ink}" stroke-width="5"/>`;
-  else s=`<rect x="128" y="92" width="144" height="196" rx="22" fill="#fff" stroke="${ink}" stroke-width="5"/><circle cx="200" cy="168" r="40" fill="${acc}"/><path d="M168 236 Q200 206 232 236 L232 262 L168 262 Z" fill="${acc}"/><rect x="150" y="288" width="100" height="26" rx="6" fill="${ink}"/><circle cx="296" cy="118" r="26" fill="none" stroke="${ink}" stroke-width="5"/><circle cx="296" cy="160" r="22" fill="${acc}" stroke="${ink}" stroke-width="4"/>`;
-  return `<svg viewBox="0 0 400 400" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><rect width="400" height="400" fill="${bg}"/><g opacity=".5">${[0,1,2,3,4,5].map(i=>`<circle cx="${40+i*68}" cy="${36+(i%2)*14}" r="5" fill="${acc}"/>`).join('')}</g>${s}</svg>`;
-}
-function pic(b){return b.foto&&b.foto.length?`<img src="${esc(b.foto[0])}" alt="${esc(b.nama)}" loading="lazy">`:art(b)}
-function orderUrl(b,v){const t=D.toko;let u=t.formUrl+'?usp=pp_url&'+t.entryBarang+'='+encodeURIComponent(b.formOption||(b.kode+' · '+b.nama));if(v)u+='&'+t.entryVarian+'='+encodeURIComponent(v);return u}
-function waUrl(text){return 'https://wa.me/'+D.toko.wa+'?text='+encodeURIComponent(text)}
+  function rp(n){return "Rp"+Math.round(n).toLocaleString("id-ID")}
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+  function waLink(teks){return "https://wa.me/"+DATA.toko.wa+"?text="+encodeURIComponent(teks)}
+  function tglIndo(iso){var b=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];var p=iso.split("-");return +p[2]+" "+b[+p[1]-1]+" "+p[0]}
+  function sisaHari(b){
+    if(!b.tutup) return null;
+    var akhir=new Date(b.tutup+"T23:59:59+07:00").getTime();
+    return Math.ceil((akhir-Date.now())/86400000);
+  }
+  function keadaan(b){
+    if(b.status==="PO ditutup") return {bisa:false,teks:"PO ditutup",kelas:"abu"};
+    if(b.status==="Barang tiba") return {bisa:false,teks:"Sudah tiba",kelas:""};
+    var h=sisaHari(b);
+    if(h!==null && h<0) return {bisa:false,teks:"PO ditutup",kelas:"abu"};
+    if(b.kuota && b.terisi>=b.kuota) return {bisa:false,teks:"Slot penuh",kelas:"abu"};
+    if(h!==null && h<=3) return {bisa:true,teks:h<=0?"Tutup hari ini":"Tutup "+h+" hari lagi",kelas:"oranye"};
+    if(b.kuota && b.kuota-b.terisi<=2) return {bisa:true,teks:"Sisa "+(b.kuota-b.terisi)+" slot",kelas:"oranye"};
+    return {bisa:true,teks:"PO dibuka",kelas:""};
+  }
+  function teksSisa(b){
+    var h=sisaHari(b);
+    if(h===null) return "";
+    if(h<0) return "Sudah tutup";
+    if(h===0) return "Tutup hari ini";
+    return "Tutup "+h+" hari lagi";
+  }
+  function daftarVarian(b){
+    return (b.varian||[]).map(function(v){return typeof v==="string"?{nama:v}:v}).filter(function(v){return !v.habis})
+      .map(function(v){return {nama:v.nama,foto:v.foto,harga:v.harga||b.harga,dp:v.dp||b.dp}});
+  }
+  function rentang(b){
+    var vs=daftarVarian(b), h=vs.length?vs.map(function(v){return v.harga}):[b.harga], d=vs.length?vs.map(function(v){return v.dp}):[b.dp];
+    var mn=Math.min.apply(null,h), mx=Math.max.apply(null,h);
+    return {min:mn,max:mx,beda:mn!==mx,dpMin:Math.min.apply(null,d)};
+  }
+  function teksPilihan(pilihan){
+    return pilihan.map(function(p){return p.nama+" \u00d7"+p.jml+(p.hargaBeda?" ("+rp(p.harga)+")":"")}).join(", ");
+  }
+  function linkOrder(b,pilihan,jumlah){
+    var t=DATA.toko;
+    var u=t.formOrder+"?usp=pp_url&"+t.entryBarang+"="+encodeURIComponent(b.kode+" \u00b7 "+b.nama);
+    if(pilihan.length) u+="&"+t.entryVarian+"="+encodeURIComponent(teksPilihan(pilihan));
+    if(t.entryJumlah&&jumlah) u+="&"+t.entryJumlah+"="+jumlah;
+    return u;
+  }
 
-function card(b){
-  const st=state(b),pct=b.kuota?Math.min(100,b.terisi/b.kuota*100):0;
-  return `<button class="card" data-kode="${esc(b.kode)}" aria-label="${esc(b.nama)}"><div class="pic">${pic(b)}<span class="tag ${st.k==='open'?'':st.k}">${esc(st.label)}</span><span class="kode">${esc(b.kode)}</span><span class="price">${rp(b.harga)}</span></div>
-  <div class="body"><span class="cat">${esc(b.kategori)}</span><h3>${esc(b.nama)}</h3><span class="dp">DP <b>${rp(b.dp)}</b> · tiba ${esc(b.eta||'–')}</span>
-  ${b.kuota?`<div class="slot"><span>${b.terisi} dari ${b.kuota} slot terisi</span><span>${Math.max(0,b.kuota-b.terisi)} sisa</span></div><div class="meter ${pct>=70?'hot':''}"><i style="width:${pct}%"></i></div>`:`<div class="slot"><span>Slot tidak dibatasi</span><span>${b.terisi} pemesan</span></div>`}</div></button>`;
-}
-function render(){
-  const shown=D.barang.filter(b=>b.status!=='tiba');
-  $('#nOpen').textContent=shown.filter(b=>state(b).order).length;
-  $('#chips').innerHTML=CATS.map(c=>{const n=c==='Semua'?shown.length:shown.filter(b=>b.kategori===c).length;return `<button class="chip" data-cat="${c}" aria-pressed="${c===cat}">${c}<small>${n}</small></button>`}).join('');
-  const s=q.trim().toLowerCase();
-  let l=shown.filter(b=>(cat==='Semua'||b.kategori===cat)&&(!s||(b.nama+' '+b.kode+' '+b.kategori).toLowerCase().includes(s)));
-  const rank=b=>{const st=state(b);return st.order?st.d:1000};
-  l.sort(sort==='murah'?(a,b)=>a.harga-b.harga:sort==='mahal'?(a,b)=>b.harga-a.harga:(a,b)=>rank(a)-rank(b));
-  $('#grid').innerHTML=l.length?l.map(card).join(''):`<p class="empty">Tidak ada barang yang cocok. Coba kategori lain, atau tanya barang incaranmu lewat WhatsApp.</p>`;
-  const tiba=D.barang.filter(b=>b.status==='tiba');
-  $('#sudah-tiba').hidden=!tiba.length;
-  $('#tiba').innerHTML=tiba.map(card).join('');
-}
-function openDetail(kode){
-  const b=D.barang.find(x=>x.kode.toLowerCase()===String(kode).toLowerCase());if(!b){closeDetail();return}
-  const st=state(b),v=pick[b.kode]||'';
-  const ask=waUrl(`Halo Ayomart, mau tanya soal PO ${b.kode} ${b.nama}`+(v?` (varian: ${v})`:''));
-  $('#sheet').innerHTML=`<button class="close" data-close aria-label="Tutup">×</button><div class="pic">${pic(b)}<span class="tag ${st.k==='open'?'':st.k}">${esc(st.label)}</span></div>
-  <div class="info"><span class="cat">${esc(b.kategori)} · ${esc(b.kode)}</span><h2 id="dTitle">${esc(b.nama)}</h2>
-  <div class="big"><b>${rp(b.harga)}</b><span>DP ${rp(b.dp)}</span></div>
-  ${b.deskripsi?`<p style="margin:0">${esc(b.deskripsi)}</p>`:''}
-  <dl class="kv"><dt>Tutup PO</dt><dd>${b.tutup?tglPendek(b.tutup):'–'}</dd><dt>Estimasi tiba</dt><dd>${esc(b.eta||'–')}</dd><dt>Slot</dt><dd>${b.kuota?`${b.terisi} dari ${b.kuota} terisi`:'Tidak dibatasi'}</dd></dl>
-  ${b.varian&&b.varian.length>1?`<div><b style="font-size:15px">Pilih varian</b><div class="vars" style="margin-top:8px">${b.varian.map(x=>`<button data-var="${esc(x)}" aria-pressed="${x===v}">${esc(x)}</button>`).join('')}</div></div>`:''}
-  ${b.catatan?`<p class="note">${esc(b.catatan)}</p>`:''}
-  <p class="note">Setelah isi form, tunggu WhatsApp dari admin untuk konfirmasi stok. Jangan transfer dulu.</p>
-  <div class="acts">${st.order?`<a class="btn pri" href="${esc(orderUrl(b,v||(b.varian&&b.varian.length===1?b.varian[0]:'')))}" target="_blank" rel="noopener">Ikut PO</a>`:`<span class="btn dis">${esc(st.label)}</span>`}<a class="btn" href="${esc(ask)}" target="_blank" rel="noopener">Tanya dulu via WA</a></div></div>`;
-  $('#ov').hidden=false;document.body.style.overflow='hidden';
-  const c=$('#sheet .close');if(c)c.focus({preventScroll:true});
-}
-function closeDetail(){$('#ov').hidden=true;document.body.style.overflow=''}
-function route(){const h=location.hash.slice(1);if(/^(fig|mer|cos)-\d+$/i.test(h))openDetail(h);else closeDetail()}
+  function kartu(b){
+    var k=keadaan(b), persen=b.kuota?Math.min(100,Math.round(b.terisi/b.kuota*100)):0;
+    var slot=b.kuota?('<div class="bar'+(b.kuota-b.terisi<=2?' hampir':'')+'"><i style="width:'+persen+'%"></i></div>'):"";
+    var kanan=b.kuota?(b.terisi+"/"+b.kuota+" slot"):"Slot bebas";
+    var sisa=teksSisa(b), h=sisaHari(b);
+    return '<button class="kartu" type="button" data-kode="'+esc(b.kode)+'" aria-label="'+esc(b.nama)+', '+(rentang(b).beda?'mulai ':'')+esc(rp(rentang(b).min))+'">'+
+      '<div class="foto"><img loading="lazy" src="'+esc(b.foto[0]||"assets/maskot.webp")+'" alt="" referrerpolicy="no-referrer">'+
+      '<span class="lencana '+k.kelas+'">'+esc(k.teks)+'</span>'+(b.contoh?'<span class="lencana contoh">CONTOH</span>':'')+'</div>'+
+      '<div class="badan"><span class="kode">'+esc(b.kode)+'</span><span class="nama">'+esc(b.nama)+'</span>'+
+      (function(){var r=rentang(b);return r.beda?'<span class="harga"><small>mulai </small>'+esc(rp(r.min))+'</span><span class="dp">DP mulai '+esc(rp(r.dpMin))+'</span>':'<span class="harga">'+esc(rp(b.harga))+'</span><span class="dp">DP '+esc(rp(b.dp))+'</span>'})()+
+      (daftarVarian(b).length>1?'<span class="jml-varian">'+daftarVarian(b).length+' varian</span>':'')+
+      (b.status==="Barang tiba"?'':'<div class="meta"><span class="'+(h!==null&&h<=3&&h>=0?'mendesak':'')+'">'+esc(sisa)+'</span><span>'+esc(kanan)+'</span></div>'+slot)+
+      '</div></button>';
+  }
 
-document.addEventListener('click',e=>{
-  const c=e.target.closest('.card');if(c){location.hash=c.dataset.kode.toLowerCase();return}
-  const ch=e.target.closest('[data-cat]');if(ch){cat=ch.dataset.cat;render();return}
-  const vb=e.target.closest('[data-var]');if(vb){const k=location.hash.slice(1).toUpperCase();pick[k]=vb.dataset.var;openDetail(k);return}
-  if(e.target.closest('[data-close]')||e.target.id==='ov'){history.pushState('',document.title,location.pathname+location.search);closeDetail()}
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden){history.pushState('',document.title,location.pathname+location.search);closeDetail()}});
-$('#q').addEventListener('input',e=>{q=e.target.value;render()});
-$('#sort').addEventListener('change',e=>{sort=e.target.value;render()});
-addEventListener('hashchange',route);
+  function render(){
+    var q=kataCari.trim().toLowerCase();
+    var tayang=DATA.barang.filter(function(b){return b.status==="Tayang"||b.status==="PO ditutup"});
+    var tiba=DATA.barang.filter(function(b){return b.status==="Barang tiba"});
+    var hasil=tayang.filter(function(b){
+      if(kategoriAktif!=="Semua"&&b.kategori!==kategoriAktif) return false;
+      if(q&&(b.nama+" "+b.kode+" "+daftarVarian(b).map(function(v){return v.nama}).join(" ")).toLowerCase().indexOf(q)<0) return false;
+      return true;
+    }).sort(function(a,b){return (keadaan(b).bisa-keadaan(a).bisa)||((sisaHari(a)||999)-(sisaHari(b)||999))});
+    $("grid").innerHTML=hasil.length?hasil.map(kartu).join(""):
+      '<div class="kosong" style="grid-column:1/-1"><img src="assets/maskot-sapa.webp" alt=""><b>'+
+      (tayang.length?"Barang tidak ditemukan":"Belum ada PO yang dibuka")+'</b>'+
+      (tayang.length?"Coba kata kunci atau kategori lain.":"Pantau terus, atau tanya admin barang apa yang akan dibuka berikutnya.")+'</div>';
+    $("tiba").hidden=!tiba.length;
+    $("gridTiba").innerHTML=tiba.map(kartu).join("");
+  }
 
-fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
-  D=d;$('#demo').hidden=!d.demo;
-  const wa=waUrl('Halo Ayomart, mau tanya soal open PO');$('#waTop').href=wa;$('#waFoot').href=wa;
-  if(d.diperbarui)$('#upd').textContent='Katalog diperbarui '+new Date(d.diperbarui).toLocaleString('id-ID',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jakarta'})+' WIB';
-  render();route();
-}).catch(()=>{$('#grid').innerHTML='<p class="empty">Katalog belum bisa dimuat. Coba muat ulang halaman, atau hubungi kami lewat WhatsApp.</p>'});
-}
+  function chips(){
+    $("chips").innerHTML=KATEGORI.map(function(k){return '<button class="chip" type="button" aria-pressed="'+(k===kategoriAktif)+'" data-k="'+k+'">'+k+'</button>'}).join("");
+  }
+
+  var terakhirFokus=null;
+  function bukaDetail(kode){
+    var b=DATA.barang.filter(function(x){return x.kode===kode})[0];
+    if(!b) return;
+    terakhirFokus=document.activeElement;
+    var k=keadaan(b), varian=daftarVarian(b), rg=rentang(b), jumlah={}, jmlTunggal=1;
+    var foto=(b.foto&&b.foto.length?b.foto.slice():["assets/maskot.webp"]);
+    varian.forEach(function(v){ if(v.foto){ v._i=foto.indexOf(v.foto); if(v._i<0){foto.push(v.foto);v._i=foto.length-1;} } });
+    var html='<button class="tutup-detail" type="button" aria-label="Tutup">&times;</button>'+
+      '<div class="galeri" id="galeri">'+foto.map(function(f,i){return '<img src="'+esc(f)+'" alt="Foto '+(i+1)+' '+esc(b.nama)+'" referrerpolicy="no-referrer"'+(i?' loading="lazy"':'')+'>'}).join("")+'</div>'+
+      (foto.length>1?'<div class="titik" id="titik">'+foto.map(function(_,i){return '<i'+(i?'':' class="aktif"')+'></i>'}).join("")+'</div>':'')+
+      '<div class="isi-detail">'+
+        '<span class="kode">'+esc(b.kode)+' · '+esc(b.kategori)+'</span>'+
+        '<h3 id="dNama">'+esc(b.nama)+'</h3>'+
+        (rg.beda?'<div class="baris-harga"><span class="harga">'+esc(rp(rg.min))+' – '+esc(rp(rg.max))+'</span><span class="dp">harga tergantung varian · DP 50% · sisa dibayar saat barang tiba</span></div>'
+          :'<div class="baris-harga"><span class="harga">'+esc(rp(b.harga))+'</span><span class="dp">per pcs · DP '+esc(rp(b.dp))+' · sisa dibayar saat barang tiba</span></div>')+
+        '<div class="kotak-info">'+
+          '<div><small>Tutup PO</small><b>'+(b.tutup?esc(tglIndo(b.tutup)):"-")+'</b></div>'+
+          '<div><small>Estimasi tiba</small><b>'+esc(b.estimasi||"-")+'</b></div>'+
+          '<div><small>Slot</small><b>'+(b.kuota?esc(b.terisi+" dari "+b.kuota+" terisi"):"Tidak dibatasi")+'</b></div>'+
+          '<div><small>Status</small><b>'+esc(k.teks)+'</b></div>'+
+        '</div>'+
+        (varian.length?
+          '<div class="label">Pilih varian <span style="font-weight:400;color:var(--sekunder)">(boleh lebih dari satu)</span></div>'+
+          '<div class="varian" id="varian">'+varian.map(function(v,i){return '<div class="vr" data-i="'+i+'">'+
+            '<button type="button" class="vr-pilih" aria-pressed="false">'+(v.foto?'<img src="'+esc(v.foto)+'" alt="" referrerpolicy="no-referrer" loading="lazy">':'')+'<span>'+esc(v.nama)+(rg.beda?'<br><small class="hv">'+esc(rp(v.harga))+'</small>':'')+'</span></button>'+
+            '<div class="jml"><button type="button" data-d="-1" aria-label="Kurangi '+esc(v.nama)+'">&minus;</button><b>0</b><button type="button" data-d="1" aria-label="Tambah '+esc(v.nama)+'">+</button></div>'+
+          '</div>'}).join("")+'</div>'
+          :
+          '<div class="label">Jumlah</div><div class="jml-tunggal"><span>'+esc(b.nama)+'</span><div class="jml tetap" id="jmlTunggal"><button type="button" data-d="-1" aria-label="Kurangi">&minus;</button><b>1</b><button type="button" data-d="1" aria-label="Tambah">+</button></div></div>')+
+        '<div class="ringkas" id="ringkas"></div>'+
+        (b.deskripsi?'<p class="desk">'+esc(b.deskripsi)+'</p>':'')+
+        (b.catatan?'<div class="catatan">'+esc(b.catatan)+'</div>':'')+
+        '<p class="info-kecil">Belum perlu transfer. Admin akan cek stok dulu, lalu mengirim tagihan DP lewat WhatsApp.</p>'+
+      '</div>'+
+      '<div class="aksi">'+
+        '<a class="btn kedua" id="dTanya" target="_blank" rel="noopener" href="#">Tanya</a>'+
+        '<a class="btn utama" id="dIkut" target="_blank" rel="noopener" href="#">Ikut PO</a>'+
+      '</div>';
+    var d=$("detail"); d.innerHTML=html; d.scrollTop=0;
+    var g=$("galeri"), ti=$("titik");
+    function keFoto(i){ if(g&&i>=0) g.scrollTo({left:i*g.clientWidth,behavior:"smooth"}); }
+    function pilihan(){ return varian.map(function(v,i){return {nama:v.nama,jml:jumlah[i]||0,harga:v.harga,dp:v.dp,hargaBeda:rg.beda}}).filter(function(p){return p.jml>0}); }
+    function perbarui(){
+      var pl=pilihan(), total=varian.length?pl.reduce(function(a,p){return a+p.jml},0):jmlTunggal;
+      var ik=$("dIkut"), r=$("ringkas");
+      if(!k.bisa){ ik.textContent=k.teks; ik.setAttribute("aria-disabled","true"); ik.href="#"; }
+      else if(varian.length&&!total){ ik.textContent="Pilih varian dulu"; ik.setAttribute("aria-disabled","true"); ik.href="#"; }
+      else { ik.textContent="Ikut PO ("+total+" pcs)"; ik.removeAttribute("aria-disabled"); ik.href=linkOrder(b,pl,total); }
+      r.innerHTML=total?
+        ((varian.length?'<div>Dipilih: <b>'+esc(teksPilihan(pl))+'</b></div>':'')+
+         '<div>Total <span class="tot">'+esc(rp(varian.length?pl.reduce(function(a,p){return a+p.harga*p.jml},0):b.harga*total))+'</span> · DP '+esc(rp(varian.length?pl.reduce(function(a,p){return a+p.dp*p.jml},0):b.dp*total))+'</div>')
+        : 'Ketuk varian untuk memilih, lalu atur jumlahnya.';
+      $("dTanya").href=waLink("Halo Ayomart, saya mau tanya soal "+b.nama+" ("+b.kode+")"+(pl.length?", varian "+teksPilihan(pl):"")+".");
+    }
+    var v=$("varian");
+    if(v) v.addEventListener("click",function(e){
+      var kotak=e.target.closest(".vr"); if(!kotak) return;
+      var i=+kotak.dataset.i, tombol=e.target.closest("button"); if(!tombol) return;
+      if(tombol.classList.contains("vr-pilih")){ jumlah[i]=jumlah[i]?0:1; keFoto(varian[i]._i); }
+      else { jumlah[i]=Math.max(0,Math.min(99,(jumlah[i]||0)+(+tombol.dataset.d))); }
+      kotak.classList.toggle("dipilih",jumlah[i]>0);
+      kotak.querySelector(".vr-pilih").setAttribute("aria-pressed",jumlah[i]>0?"true":"false");
+      kotak.querySelector(".jml b").textContent=jumlah[i]||0;
+      perbarui();
+    });
+    var jt=$("jmlTunggal");
+    if(jt) jt.addEventListener("click",function(e){
+      var t=e.target.closest("button"); if(!t) return;
+      jmlTunggal=Math.max(1,Math.min(99,jmlTunggal+(+t.dataset.d))); jt.querySelector("b").textContent=jmlTunggal; perbarui();
+    });
+    perbarui();
+    if(g&&ti) g.addEventListener("scroll",function(){
+      var i=Math.round(g.scrollLeft/g.clientWidth);
+      [].forEach.call(ti.children,function(c,j){c.className=j===i?"aktif":""});
+    },{passive:true});
+    d.querySelector(".tutup-detail").addEventListener("click",tutupDetail);
+    $("lapis").classList.add("buka"); $("lapis").setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+    d.querySelector(".tutup-detail").focus();
+    if(location.hash!=="#"+b.kode) history.pushState(null,"","#"+b.kode);
+  }
+  function tutupDetail(dariRiwayat){
+    if(!$("lapis").classList.contains("buka")) return;
+    $("lapis").classList.remove("buka"); $("lapis").setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+    if(dariRiwayat!==true && location.hash) history.pushState(null,"",location.pathname+location.search);
+    if(terakhirFokus) terakhirFokus.focus();
+  }
+
+  function pasang(){
+    $("waAtas").href=waLink("Halo Ayomart, saya mau tanya soal open PO.");
+    $("waBawah").href=waLink("Halo Ayomart, saya mau tanya soal open PO.");
+    if(DATA.diperbarui){
+      var t=new Date(DATA.diperbarui);
+      $("diperbarui").textContent="Diperbarui "+t.toLocaleDateString("id-ID",{day:"numeric",month:"short",timeZone:"Asia/Jakarta"});
+    }
+    chips(); render();
+    $("chips").addEventListener("click",function(e){var t=e.target.closest(".chip");if(!t)return;kategoriAktif=t.dataset.k;chips();render()});
+    $("cari").addEventListener("input",function(e){kataCari=e.target.value;render()});
+    document.addEventListener("click",function(e){var c=e.target.closest(".kartu");if(c)bukaDetail(c.dataset.kode)});
+    $("lapis").addEventListener("click",function(e){if(e.target===$("lapis"))tutupDetail()});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")tutupDetail()});
+    window.addEventListener("popstate",function(){var h=location.hash.slice(1);if(h)bukaDetail(h);else tutupDetail(true)});
+    var awal=location.hash.slice(1); if(awal) bukaDetail(awal);
+  }
+
+  if(window.__DATA__){DATA=window.__DATA__;pasang();}
+  else fetch("data/barang.json?v="+Date.now()).then(function(r){return r.json()}).then(function(j){DATA=j;pasang()})
+    .catch(function(){$("grid").innerHTML='<div class="kosong" style="grid-column:1/-1"><b>Katalog gagal dimuat</b>Coba muat ulang halaman, atau tanya admin lewat WhatsApp.</div>'});
+})();
 </script>
 </body>
 </html>
